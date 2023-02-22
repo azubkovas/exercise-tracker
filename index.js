@@ -74,7 +74,7 @@ app.post('/api/users/:_id/exercises', (req, res) => {
     res.send('Invalid date!');
     return;
   }
-  let newExercise = { description: req.body.description, duration: req.body.duration, date: dateToSet };
+  let newExercise = { description: req.body.description, duration: Number(req.body.duration), date: dateToSet };
   User.findById(req.params._id, (err, data) => {
     if(err)
     {
