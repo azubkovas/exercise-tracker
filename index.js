@@ -10,7 +10,15 @@ const port = process.env.PORT || 3000;
 const mongoURI = process.env.MONGO_URI;
 
 mongoose.set('strictQuery', false);
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+  if(err){
+    console.log('connection to mongoDB failed');
+    console.log(err);
+  }
+  else{
+    console.log('mongoDB connected');
+  }
+});
 let userSchema = new mongoose.Schema({
   username: String,
   exercises: [{
